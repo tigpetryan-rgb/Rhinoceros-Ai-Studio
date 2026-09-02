@@ -1,0 +1,24 @@
+name: G1 Core Build
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: SDK evidence
+        run: dotnet --info
+      - name: Restore
+        run: dotnet restore tests/Jewelry.Engine.ContractTests/Jewelry.Engine.ContractTests.csproj
+      - name: Build warnings-as-errors
+        run: dotnet build tests/Jewelry.Engine.ContractTests/Jewelry.Engine.ContractTests.csproj -c Release --no-restore
+      - name: Core smoke harness
+        run: dotnet run --project tests/Jewelry.Engine.ContractTests/Jewelry.Engine.ContractTests.csproj -c Release --no-build
