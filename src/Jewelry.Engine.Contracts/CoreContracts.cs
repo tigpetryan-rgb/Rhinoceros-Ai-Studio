@@ -62,7 +62,7 @@ public sealed record NodeExecutionRecord(OperationNodeId NodeId, NodeExecutionSt
 
 public sealed record ExecutionTarget(IReadOnlySet<OperationNodeId>? TargetNodes)
 {
-    public static ExecutionTarget All { get; } = new(null);
+    public static ExecutionTarget All { get; } = new((IReadOnlySet<OperationNodeId>?)null);
     public static ExecutionTarget Nodes(params OperationNodeId[] nodeIds) => new(new HashSet<OperationNodeId>(nodeIds));
 }
 
