@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup><ProjectReference Include="../Jewelry.Engine.Contracts/Jewelry.Engine.Contracts.csproj" /></ItemGroup>
+</Project>
