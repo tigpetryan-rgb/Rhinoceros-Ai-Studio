@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../Jewelry.Engine.Contracts/Jewelry.Engine.Contracts.csproj" />
+    <ProjectReference Include="../Jewelry.Engine.Execution/Jewelry.Engine.Execution.csproj" />
+  </ItemGroup>
+</Project>
