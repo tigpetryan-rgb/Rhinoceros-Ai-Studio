@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../Jewelry.Engine.Contracts/Jewelry.Engine.Contracts.csproj" />
+    <ProjectReference Include="../Jewelry.Engine.Execution/Jewelry.Engine.Execution.csproj" />
+    <ProjectReference Include="../Jewelry.Engine.Operations/Jewelry.Engine.Operations.csproj" />
+    <ProjectReference Include="../Jewelry.Engine.Planning/Jewelry.Engine.Planning.csproj" />
+    <ProjectReference Include="../Jewelry.Engine.Repair/Jewelry.Engine.Repair.csproj" />
+    <ProjectReference Include="../Jewelry.Engine.Production/Jewelry.Engine.Production.csproj" />
+  </ItemGroup>
+</Project>
