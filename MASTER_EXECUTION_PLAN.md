@@ -1,99 +1,75 @@
 # JEWELRY ENGINE — CANONICAL MASTER EXECUTION PLAN
 
 **Plan ID:** JE-MASTER-PLAN  
-**Plan Revision:** 1.0  
+**Plan Revision:** 1.1  
 **Effective date:** 2026-09-02  
 **Canonical released engine:** Jewelry Engine v0.1.1  
 **Target milestone:** Jewelry Engine v0.2.0  
 **Canonical decisions closed:** MID-001 → MID-422  
 **Current exact MID:** MID-423  
-**Current state:** v0.2 MIGRATION-STAGE — NOT RELEASE CANDIDATE  
-**Current active objective:** BUILD + RHINO SDK BINDING + TEST-GATE CLOSURE / RC HARDENING
+**Current state:** v0.2 MIGRATION / RC-HARDENING — NOT RELEASE CANDIDATE  
+**Current active gate:** STEP 2 — BIND RELEASED RING v0.1.1 IMPLEMENTATION
 
 ---
 
 ## 0. NORMATIVE AUTHORITY
 
-This document is the mandatory execution authority for every Jewelry Engine / Rhinoceros AI Studio work session.
+This file is the mandatory execution authority for every Jewelry Engine / Rhinoceros AI Studio chat, agent, GitHub change, Drive handoff, implementation, refactor, and test session.
 
-It is not a suggestion, backlog brainstorm, or historical summary. It defines:
+Authority order:
+1. Highest revision of this plan.
+2. Canonical Master Decisions MID-001→MID-422, unless objective build/test/Rhino evidence proves a contradiction.
+3. Released v0.1.1 source/evidence.
+4. Historical handoffs and module documents as evidence only, never as competing roadmaps.
 
-- what is already complete,
-- what is partially implemented,
-- what remains,
-- the exact order of execution,
-- what is explicitly rejected,
-- what is deferred,
-- the evidence required before advancing.
+If GitHub and Drive copies differ, STOP implementation and reconcile them. Do not operate with split-brain governance.
 
-### Authority precedence
-
-1. This plan, at the highest `Plan Revision`, is the execution authority.
-2. Canonical Master Decisions MID-001→MID-422 remain frozen unless objective compile/test/Rhino evidence proves a contradiction.
-3. Historical chat handoffs and module documents are evidence, not competing execution authorities.
-4. Isolated module plans never override this file.
-5. If Drive and GitHub copies differ, STOP. Reconcile them before implementation. No silent split-brain plan is allowed.
-
-### User override
-
-The project owner may explicitly change this plan. A requested direction change must first be recorded as a new Plan Revision (and, when architecture-affecting, a new MID decision) before implementation starts. Do not silently deviate.
+The project owner may change direction, but an architecture/order change must first be recorded in a new Plan Revision and, when architecture-affecting, a new MID decision.
 
 ---
 
-## 1. STATUS LANGUAGE — STRICT
+## 1. STRICT STATUS LANGUAGE
 
-Use only these project-state marks:
+- ✅ **VERIFIED COMPLETE** — required implementation and declared acceptance evidence passed.
+- ⚠️ **IMPLEMENTED BUT NOT FINAL** — code/contracts exist but required build, Rhino, integration, regression, persistence, or production evidence is incomplete.
+- ❌ **NOT COMPLETE** — required work/evidence is missing.
+- 🗑️ **REJECTED / NOT MAIN DIRECTION** — superseded or forbidden by canonical architecture.
 
-- ✅ **VERIFIED COMPLETE** — implementation/contract is finished for its declared scope and required evidence has passed.
-- ⚠️ **IMPLEMENTED BUT NOT FINAL** — code/contracts exist, but required compile, Rhino, integration, persistence, regression, or production evidence is incomplete.
-- ❌ **NOT COMPLETE** — required implementation or verification has not been delivered.
-- 🗑️ **NOT MAIN DIRECTION / REJECTED** — explicitly superseded, forbidden, or no longer part of the canonical path.
-
-### Promotion rule
-
-A task may become ✅ only when its acceptance evidence is recorded. “Code exists”, “architecture approved”, “skeleton written”, or “looks correct” is not sufficient.
-
-If later evidence disproves a ✅ claim, downgrade it immediately and record why.
+A task becomes ✅ only after evidence is recorded. “Code exists”, “architecture approved”, or “looks correct” is never enough.
 
 ---
 
-## 2. AGENT / CHAT STARTUP PROTOCOL — MANDATORY
+## 2. MANDATORY AGENT / CHAT STARTUP PROTOCOL
 
-Before touching code, docs, GitHub issues/PRs, Drive artifacts, or architecture, every new chat/agent must:
-
-1. Read this entire plan.
-2. State the current `Plan Revision`, released engine version, target version, current exact MID, and current active gate internally before acting.
-3. Read only the canonical source/evidence required for the active gate.
-4. Work on the **single current active gate** and its direct blockers only.
-5. Do not start later phases because they are interesting, easy, or parallelizable.
-6. Do not reopen MID-001→MID-422 architecture without concrete failing build/test/Rhino evidence.
-7. Do not invent a new competing result/diagnostic/geometry/identity contract.
-8. At the end of a meaningful work unit, update this plan’s evidence/status before moving forward.
-
-If a request arrives for later-scope work, record it as deferred unless the user explicitly orders a Plan Revision.
+Before touching code/docs/issues/PRs/tests:
+1. Read this entire file.
+2. Internally identify Plan Revision, released version, target version, current MID, and the single active gate.
+3. Work only on the active gate and direct blockers.
+4. Do not begin later phases for convenience or parallelism.
+5. Do not reopen MID-001→MID-422 without concrete failing evidence.
+6. Do not invent competing Result/Diagnostic/Geometry/Identity contracts.
+7. Preserve released v0.1.1 algorithms unless an evidence-backed adapter/migration boundary requires change.
+8. At the end of a meaningful unit, record evidence/status here and mirror the plan to GitHub + Drive before advancing.
 
 ---
 
 ## 3. ONE-ACTIVE-GATE RULE
 
-Only one primary execution gate may be active at a time.
+Exactly one primary gate is active at a time.
 
-A later gate may be prepared only when preparation is strictly necessary to close the current gate. Parallel feature development is forbidden until the current gate’s acceptance criteria pass.
+Failure handling is narrow:
+- compile failure → compile/integration fix only;
+- contract failure → deterministic contract fix only;
+- Rhino binding failure → Rhino adapter/binding fix only;
+- geometry fixture failure → responsible geometry/policy fix only.
 
-### Failure behavior
-
-- Compile failure → fix compile/integration contradictions only.
-- Contract test failure → fix the deterministic contract defect only.
-- Rhino binding failure → fix Rhino adapter/module binding only.
-- Geometry fixture failure → fix the responsible geometry algorithm/policy only.
-- Do not use a failure as permission to redesign unrelated architecture.
+A failure is not permission to redesign unrelated architecture.
 
 ---
 
-## 4. CURRENT VERIFIED BASELINE
+## 4. VERIFIED RELEASE BASELINE
 
-### ✅ Released v0.1.1 baseline
-
+### ✅ Jewelry Engine v0.1.1 released algorithms
 - ✅ RingSizeConverter
 - ✅ RingRailGenerator
 - ✅ ProfileGenerator
@@ -101,409 +77,255 @@ A later gate may be prepared only when preparation is strictly necessary to clos
 - ✅ ClosedSolidValidator
 - ✅ NakedEdgeValidator
 
-These released algorithms are preserved. v0.2 adapts/migrates them; it does not rewrite them without evidence.
+v0.2 must adapt/migrate this baseline; do not casually rewrite it.
 
-### ✅ Canonical architecture / integration decisions
-
+### ✅ Canonical integration history
 - ✅ A–L architecture reviews completed.
-- ✅ Cross-module contracts MID-001→MID-330 completed.
-- ✅ OperationGraph + Executor v0.2 final schema freeze MID-331→MID-380 completed.
-- ✅ v0.2 source/contract migration MID-381→MID-422 completed.
-- ✅ Mandatory static source audit gate G0 passed.
+- ✅ Cross-module contracts MID-001→MID-330.
+- ✅ OperationGraph + Executor v0.2 final schema freeze MID-331→MID-380.
+- ✅ v0.2 source/contract migration decisions MID-381→MID-422.
+- ✅ G0 static source/project-reference/delimiter audit.
+- ✅ G1 Core .NET 8 warnings-as-errors build closure.
 
 ### Release truth
-
-- ✅ Released version remains **Jewelry Engine v0.1.1**.
+- ✅ Released engine remains **v0.1.1**.
 - ❌ v0.2 is not RC.
-- ❌ v0.2 release bump is not authorized.
+- ❌ No version bump is authorized.
 
 ---
 
-## 5. CURRENT MODULE STATUS AFTER MID-422
+## 5. SOURCE RECOVERY PROVENANCE
+
+The MID-423 Drive archive preserved the MID-381→422 source manifest and canonical implementation/decision reports, but the archived ZIP did not contain the raw `.cs/.csproj` bytes described by that manifest.
+
+To unblock G1, the repository Core compile surface was reconstructed strictly from frozen MID-381→422 decisions. This reconstruction:
+- is a G1 blocker-removal action;
+- does not claim byte identity with the missing archive source;
+- does not substitute for released v0.1.1 Rhino algorithms;
+- does not promote G2 or later gates;
+- must be reconciled with recovered released/source artifacts at explicit adapter boundaries.
+
+Repository evidence file: `docs/SOURCE_RECOVERY.md`.
+
+---
+
+## 6. CURRENT MODULE STATUS
 
 | Module / subsystem | Status | Canonical meaning |
 |---|---|---|
-| A — Gem Engine | ⚠️ | Migrated to v0.2 operation contracts; concrete approved Gem module still needs Rhino binding/compile/tests. |
-| B — Gem Seat + Prongs | ⚠️ | Typed Seat/ProngLayout/Prong graph migration exists; concrete Rhino assembly verification remains. |
-| C — Boolean + Geometry QC | ⚠️ | Typed outcomes/QC/publication contracts exist; real Rhino pathological fixtures remain. |
-| D — DesignIntent | ⚠️ | Integration bridge is present; upstream validator/default/normalization/capability completion remains post-RC work unless required by an active gate. |
-| E — Manufacturing Validator | ⚠️ | Read-only validation integration/readiness surface exists; concrete production analyzers/rules and Rhino evidence remain. |
-| F — Weight + Cost | ⚠️ | Post-ProductionRevision boundary exists; concrete calculators/material catalog/tests remain. |
-| G — Export + Production Package | ⚠️ | ProductionRevision-only authority exists; concrete 3DM/STEP/STL writers/re-import/package tests remain. |
-| H — AI Jewelry Analyzer | ❌ | Architecture approved; executable analyzer implementation is not on current RC-critical path. |
-| I — Construction Recognition | ❌ | Architecture approved; executable recognizer is not on current RC-critical path. |
-| J — OperationGraph Planner | ⚠️ | v0.2 factories, stable node IDs, legacy migrator, graph diff exist; full runtime verification remains. |
-| Executor / GeometryStore / Cache / Invalidation / Journal | ⚠️ | Compile-oriented implementation exists; build + contract + Rhino integration evidence remains. |
-| K — Grasshopper | ⚠️ | Canonical adapter exists; real GH_Component/GUID/preview/persistence host tests remain. |
-| L — Autonomous Repair | ⚠️ | Rule-based revision/invalidation/rollback integration exists; real module/Rhino repair fixtures remain. |
-| ProductionReadinessGate | ⚠️ | Contract/source exists; real end-to-end gate evidence remains. |
-| GeometrySnapshot / ProductionRevision | ⚠️ | Canonical authority model exists; real commit/persistence/export fixtures remain. |
-| Persistent cache/journal/production stores | ❌ | Production backends not complete. |
+| A — Gem Engine | ⚠️ | v0.2 contract surface exists; real approved Rhino module binding/tests remain. |
+| B — Gem Seat + Prongs | ⚠️ | Typed contracts/layout direction exists; real Rhino assembly verification remains. |
+| C — Boolean + Geometry QC | ⚠️ | Typed outcome/QC direction exists; real Rhino pathological fixtures remain. |
+| D — DesignIntent | ⚠️ | Integration bridge/domain work exists; final validator/default/normalization/capability work remains post-RC unless a blocker. |
+| E — Manufacturing Validator | ⚠️ | Validation/readiness boundary exists; concrete production analyzers/rules + Rhino evidence remain. |
+| F — Weight + Cost | ⚠️ | ProductionRevision boundary exists; concrete calculators/material catalog/tests remain. |
+| G — Export + Production Package | ⚠️ | ProductionRevision-only authority defined; 3DM/STEP/STL writers/re-import/package tests remain. |
+| H — AI Jewelry Analyzer | ❌ | Architecture approved; executable implementation is post-v0.2-RC. |
+| I — Construction Recognition | ❌ | Architecture approved; executable implementation is post-v0.2-RC. |
+| J — OperationGraph Planner | ⚠️ | v0.2 graph factory/migration surface exists; full runtime/contract verification remains. |
+| Executor / GeometryStore / Cache / Invalidation / Journal | ⚠️ | Core compile surface builds; complete G2 contract harness evidence remains. |
+| K — Grasshopper | ⚠️ | Adapter architecture approved; real GH_Component/GUID/preview/persistence host tests remain. |
+| L — Autonomous Repair | ⚠️ | Deterministic rule boundary exists; real module/Rhino repair fixtures remain. |
+| ProductionReadinessGate / ProductionRevision | ⚠️ | Core boundary builds; real commit/persistence/export fixtures remain. |
+| Persistent production stores | ❌ | Not complete. |
 | Full Rhino deterministic regression | ❌ | Not run. |
-| v0.2 RC verdict | ❌ | Blocked by mandatory test gates. |
+| v0.2 RC verdict | ❌ | Blocked by remaining mandatory gates. |
 
 ---
 
-## 6. MANDATORY TEST-GATE STATE
+## 7. MANDATORY TEST-GATE STATE
 
-| Gate | Scope | Current status | Promotion evidence |
+| Gate | Scope | Status | Required evidence |
 |---|---|---|---|
-| G0 | Static source/project-reference/delimiter audit | ✅ PASS | Existing MID-381→422 evidence |
-| G1 | .NET 8 Core compile, warnings-as-errors | ❌ NOT RUN | Successful reproducible build log |
-| G2 | Contract harness: graph/executor/store/cache/invalidation/repair/production | ⚠️ IMPLEMENTED, NOT RUN | Full harness pass log |
+| G0 | Static source/project-reference/delimiter audit | ✅ PASS | MID-381→422 evidence |
+| G1 | .NET 8 Core compile, warnings-as-errors | ✅ PASS | GitHub Actions run `33627706511`: SDK 8.0.424, net8.0, 0 warnings, 0 errors; final PR head rerun `33627808748` also PASS |
+| G2 | Full contract harness: graph/executor/store/cache/invalidation/repair/production | ⚠️ NOT CLOSED | Complete deterministic harness pass; current 15-node smoke is not G2 closure |
 | G3 | Jewelry.Engine.Rhino compile against Rhino 8 RhinoCommon | ❌ NOT RUN | Successful Rhino SDK build log |
 | G4 | Real Rhino Classic Solitaire E2E | ❌ NOT RUN | Deterministic successful fixture + QC evidence |
-| G5 | Boolean NoResult/Ambiguous/EngineFailure fixtures | ❌ NOT RUN | Expected outcome matrix passes |
+| G5 | Boolean NoResult/Ambiguous/EngineFailure corpus | ❌ NOT RUN | Expected outcome matrix pass |
 | G6 | Incremental execution + real geometry fingerprints | ❌ NOT RUN | Cache/invalidation/preservation fixtures pass |
-| G7 | Parameter/topology repair + rollback with real modules | ❌ NOT RUN | Repair and last-good rollback fixtures pass |
-| G8 | Production snapshot + 3DM/STEP/STL integration | ⚠️ CONTRACT PARTIAL / NOT RUN | Export + re-import/hash/manifest tests pass |
-| G9 | Real Grasshopper GH_Component solve/preview/persistence | ⚠️ ADAPTER ONLY | Host integration tests pass, no durable runtime GeometryReference |
-| G10 | Rhino 8 determinism/tolerance regression | ❌ NOT RUN | Repeated-session tolerance-aware equivalence passes |
+| G7 | Parameter/topology repair + rollback with real modules | ❌ NOT RUN | Repair + last-good rollback fixtures pass |
+| G8 | Production snapshot + 3DM/STEP/STL integration | ⚠️ PARTIAL | Export + re-import/hash/manifest tests pass |
+| G9 | Real Grasshopper GH_Component solve/preview/persistence | ⚠️ ADAPTER ONLY | Host integration tests pass |
+| G10 | Rhino 8 determinism/tolerance regression | ❌ NOT RUN | Repeated-session tolerance-aware equivalence pass |
 
-No RC decision is allowed until required gates are closed.
+No RC decision is allowed until required gates close.
 
 ---
 
-## 7. STRICT EXECUTION ORDER — CURRENT MID-423
+## 8. STRICT EXECUTION ORDER — MID-423
 
-The following sequence is mandatory. Do not reorder without a Plan Revision.
+### STEP 1 — G1 Core build closure — ✅ COMPLETE
+Evidence:
+- repo `tigpetryan-rgb/Rhinoceros-Ai-Studio`;
+- workflow `G1 Core Build`;
+- SDK pinned with `global.json` to **8.0.424**;
+- target `net8.0`;
+- `TreatWarningsAsErrors=true`;
+- build: **0 warnings / 0 errors**;
+- smoke: `PASS: 15 nodes; released=0.1.1; target=0.2.0`;
+- successful evidence run `33627706511`;
+- final evidence-head run `33627808748` PASS;
+- merged G1 commit: `35b78ceaf47acb630ebcfe23f514fad508a8158b`.
 
-### STEP 1 — G1 Core build closure — **ACTIVE NOW**
+A first run (`33627390904`) found one deterministic CS0121 ambiguity in `ExecutionTarget.All`; it was fixed only by explicitly typing the nullable constructor argument. No architecture change.
 
-Status: ❌
+### STEP 2 — Bind released Ring v0.1.1 implementation — **ACTIVE NOW**
+Status: ⚠️
 
-Actions:
-
-1. Compile all Core .NET 8 projects with warnings-as-errors.
-2. Capture exact compiler diagnostics.
-3. Fix only real compile/integration contradictions.
-4. Do not reopen frozen architecture without evidence.
-5. Re-run until clean.
+Required actions:
+1. Recover/ground the released v0.1.1 Ring source artifacts from canonical Drive handoffs.
+2. Preserve RingSizeConverter, RingRailGenerator, ProfileGenerator, RingShankGenerator, ClosedSolidValidator, NakedEdgeValidator behavior.
+3. Bind them to the canonical v0.2 Rhino adapter seam / `IRingGeometryModuleV011`-equivalent interface without duplicating algorithms.
+4. Keep mm-domain and Rhino unit conversion boundary intact.
+5. Add adapter compile tests and baseline fixture-equivalence evidence.
 
 Acceptance:
+- released Ring algorithms are present or referenced through an explicit adapter boundary;
+- adapter compiles cleanly;
+- baseline v0.1.1 ring fixture equivalence passes;
+- no silent algorithm rewrite.
 
-- clean reproducible build,
-- zero warnings under warnings-as-errors,
-- evidence recorded here / linked commit-log.
-
-**Nothing later becomes the primary task until STEP 1 is ✅.**
-
-### STEP 2 — Bind released Ring v0.1.1 implementation
-
-Status: ⚠️
-
-Bind the released Ring implementation to `IRingGeometryModuleV011` / canonical Rhino adapter seams. Preserve released algorithms and explicit migration boundaries.
-
-Acceptance: adapter compile + baseline ring fixture equivalence.
+**Nothing later becomes primary until STEP 2 is ✅.**
 
 ### STEP 3 — Bind A/B/C/E concrete Rhino modules
+Gem, Seat, Prong layout/generation, Boolean, Geometry QC, Manufacturing validation. No ComponentId→Brep magic lookup; no geometry algorithm duplication in Executor/Grasshopper.
 
-Status: ⚠️
+### STEP 4 — Rhino geometry detached clone + content fingerprint
+Fingerprint stability across sessions and clone independence.
 
-Bind concrete approved implementations for:
-
-- Gem,
-- Gem Seat,
-- Prong layout/generation,
-- Boolean,
-- Geometry QC,
-- Manufacturing validation.
-
-No ComponentId→Brep magic lookup. No duplicate geometry algorithms in Executor or Grasshopper.
-
-Acceptance: all bindings compile and use frozen typed contracts.
-
-### STEP 4 — Rhino geometry clone + content fingerprint
-
-Status: ❌
-
-Implement/verify production deterministic detached cloning and geometry content fingerprinting for supported geometry types.
-
-Acceptance: fingerprint stability across sessions and clone independence tests.
-
-### STEP 5 — G2 contract harness closure
-
-Status: ⚠️
-
-Run all implemented graph/executor/store/cache/invalidation/repair/production cases. Fix deterministic failures only.
-
-Acceptance: full contract harness pass.
+### STEP 5 — G2 full contract harness closure
+Graph/executor/store/cache/invalidation/repair/production deterministic cases. The current smoke test is insufficient.
 
 ### STEP 6 — G3 Rhino SDK compile
-
-Status: ❌
-
-Compile `Jewelry.Engine.Rhino` against the installed Rhino 8 RhinoCommon SDK.
-
-Acceptance: clean Rhino adapter build with warnings-as-errors where applicable.
+Compile `Jewelry.Engine.Rhino` against Rhino 8 RhinoCommon.
 
 ### STEP 7 — G4 Classic Solitaire real Rhino E2E
-
-Status: ❌
-
-Canonical first production model only:
-
-Ring → Round Brilliant Gem → placement → Seat → 4/6 Prongs → Boolean assembly → Geometry QC → Manufacturing validation candidate.
-
-Acceptance: deterministic successful real Rhino fixture with correct staged/published geometry and structured reports.
+Ring → Round Brilliant Gem → placement → Seat → 4/6 Prongs → Boolean → Geometry QC → Manufacturing candidate.
 
 ### STEP 8 — G5 Boolean failure corpus
-
-Status: ❌
-
-Test and preserve semantic distinction among:
-
-- NoResult,
-- AmbiguousResult,
-- EngineFailure,
-- Cancelled,
-- deterministic explicit selection policy when allowed.
-
-Include tangent/near-coincident/sliver/micro-feature pathological cases.
-
-Acceptance: expected outcome matrix passes with no random retry.
+Preserve NoResult / AmbiguousResult / EngineFailure / Cancelled distinctions and deterministic selection policies. No random retries.
 
 ### STEP 9 — G6 incremental invalidation/cache/preservation
-
-Status: ❌
-
-Verify real geometry fingerprint-driven reuse and invalidation:
-
-- shank-only changes preserve independent gem branch,
-- gem dimension changes invalidate seat/prongs/Boolean downstream,
-- manufacturing-rule change starts at manufacturing validation,
-- material only invalidates declared consumers,
-- pricing never regenerates CAD geometry.
-
-Acceptance: deterministic fixture matrix passes.
+Verify branch preservation, declared consumer invalidation, material separation, and pricing never regenerating CAD.
 
 ### STEP 10 — G7 Autonomous Repair real fixtures
-
-Status: ❌
-
-Initial deterministic repair policies:
-
-- `PRONG_TOO_THIN` → explicit diameter increase rule,
-- `SEAT_TOO_DEEP` → explicit depth reduction rule,
-- `BOOLEAN_NO_RESULT` → explicit deterministic intersection/fallback policy.
-
-Pipeline:
-
-Diagnostic → RepairPlanner → RepairPlan → RepairAttemptId → derived revision → invalidation → targeted rerun → QC → Manufacturing → accept/reject → rollback.
-
-Topology repair must rerun Planner. Failed repair must never overwrite last-good production state.
-
-Acceptance: parameter repair, topology repair, rejection, and rollback fixtures pass.
+Initial deterministic rules: `PRONG_TOO_THIN`, `SEAT_TOO_DEEP`, `BOOLEAN_NO_RESULT`; parameter/topology rerun, acceptance/rejection, rollback.
 
 ### STEP 11 — ProductionReadinessGate + ProductionRevision
-
-Status: ⚠️
-
-Required authority:
-
-accepted candidate → final QC → manufacturing validation / reasoned approved override → accepted repair state → geometry commit → GeometrySnapshot → ProductionReadinessGate → ProductionRevision.
-
-Acceptance: success/failure/override/audit fixtures pass; ProductionRevision remains append-only and detached.
+Accepted candidate → final QC → manufacturing/approved override → accepted repair state → snapshot → readiness gate → append-only ProductionRevision.
 
 ### STEP 12 — G8 3DM / STEP / STL + Production Package
-
-Status: ⚠️
-
-Bind concrete exporters consuming only `ProductionRevision + GeometrySnapshot`.
-
-Required outputs:
-
-- 3DM CAD master,
-- STEP manufacturing interchange,
-- STL mesh manufacturing,
-- DesignIntent snapshot,
-- QC report,
-- manufacturing report,
-- material/stone/weight metadata,
-- engine/revision IDs,
-- hashes/manifest.
-
-Acceptance: export, re-import, integrity, manifest, and failure-handling tests pass.
+Export only from ProductionRevision + GeometrySnapshot; include DesignIntent/QC/manufacturing/material/stone/weight/version/hash manifest; test re-import/integrity/failures.
 
 ### STEP 13 — Physical properties + commercial costing
-
-Status: ⚠️
-
-ProductionRevision → Volume → configurable alloy density → Weight → Material/Production Cost.
-
-Invariant: geometry never knows price; pricing does not invalidate CAD geometry.
-
-Acceptance: calculator/catalog/unit tests + production snapshot integration pass.
+ProductionRevision → volume → configurable density → weight → material/production cost. Geometry never knows price.
 
 ### STEP 14 — G9 Grasshopper real host integration
-
-Status: ⚠️
-
-Wire actual `GH_Component` wrappers/GUIDs/persistence to canonical adapters:
-
-JE Ring Size, Ring Rail, Profile, Ring Shank, Gem, Seat, Prongs, Boolean, Validate, Weight, OperationGraph.
-
-Invariant: Grasshopper is UI/adapter/wrapper only. It never becomes a second Planner/Executor/geometry authority.
-
-Acceptance: solve/preview/persistence/recompute tests pass; no durable runtime GeometryReference serialization.
+GH_Component wrappers/GUIDs/preview/persistence only. Grasshopper is never a second Planner/Executor/geometry authority.
 
 ### STEP 15 — G10 determinism/tolerance regression
-
-Status: ❌
-
-Run repeatable Rhino 8 fixtures across sessions/runs with canonical tolerances.
-
-Acceptance: equivalent deterministic inputs yield semantically equivalent geometry and reports within tolerance.
+Repeat Rhino 8 fixtures across runs/sessions with canonical tolerances.
 
 ### STEP 16 — RC readiness verdict
-
-Status: ❌
-
-Produce explicit RC YES/NO verdict with:
-
-- all gate evidence,
-- remaining blockers,
-- A–L status,
-- exact new MID decisions beginning MID-423,
-- released version still v0.1.1 unless explicit Master release acceptance.
-
-No automatic version bump.
+Explicit YES/NO with all gate evidence, blockers, A–L status, new MID decisions beginning MID-423 when warranted. No automatic release bump.
 
 ---
 
-## 8. POST-v0.2-RC AUTONOMOUS AI PATH — DO NOT PULL FORWARD
+## 9. POST-v0.2-RC AUTONOMOUS AI PATH — DO NOT PULL FORWARD
 
-These remain part of the project but are not current RC-critical execution work.
-
-1. ❌ AI Jewelry Analyzer executable implementation
-   - photos/sketch/CAD screenshots/dimensions/prompt
-   - observations + confidence + provenance + uncertainties
-2. ❌ Construction Recognition executable implementation
-   - observations → construction hypotheses → resolved construction graph
-3. ⚠️ DesignIntent finalization
-   - validator
-   - default resolver
-   - normalizer
-   - capability validator
-   - ResolvedDesignIntent
-4. ❌ Full autonomous loop
-   - Reference → Analyzer → Construction Recognition → DesignIntent → Planner → OperationGraph → Executor → Rhino CAD → QC → Manufacturing → Repair → ProductionRevision → Weight/Cost → Export
-
-Only after v0.2 RC closure may these become the primary line unless the plan is explicitly revised.
+Until v0.2 RC closure, these are not primary work:
+- ❌ executable AI Jewelry Analyzer;
+- ❌ executable Construction Recognition;
+- ⚠️ final DesignIntent validator/default resolver/normalizer/capability validator;
+- ❌ full Reference → Analyzer → Construction → DesignIntent → Planner → Rhino → QC → Manufacturing → Repair → ProductionRevision → Cost → Export autonomous loop.
 
 ---
 
-## 9. DEFERRED — VALID FUTURE WORK, NOT CURRENT PATH
+## 10. DEFERRED FUTURE WORK
 
-Do not implement during MID-423 RC hardening unless explicitly promoted by a Plan Revision:
-
-- Halo
-- Pavé
-- Channel setting
-- Bezel setting
-- Gallery/undergallery expansion
-- Oval/Pear/Emerald/Princess/etc. gem shapes
-- Pendants/Earrings/other jewelry families
-- Trend Intelligence
-- Style DNA
-- Collection generation
-- natural-language editing UX
-- full render system
-- multi-image reconstruction
-
-Deferred does not mean rejected.
+Do not pull into current RC-hardening path without Plan Revision:
+Halo, Pavé, Channel, Bezel, expanded gallery, additional gem shapes, pendants/earrings/other families, Trend Intelligence, Style DNA, collection generation, natural-language editing UX, full render system, multi-image reconstruction.
 
 ---
 
-## 10. 🗑️ REJECTED / SUPERSEDED DIRECTIONS
+## 11. 🗑️ REJECTED / SUPERSEDED DIRECTIONS
 
-The following must not be reintroduced as active architecture:
-
-- 🗑️ AI generating arbitrary Rhino C# / raw NURBS control logic as the main runtime path.
-- 🗑️ Grasshopper as a second CAD business-logic implementation or execution authority.
-- 🗑️ OperationGraph v0.1 as the continuing primary graph architecture.
-- 🗑️ Silent v0.1.1→v0.2 graph reinterpretation; migration must be explicit/versioned.
-- 🗑️ ComponentId→live Brep/GeometryReference magic lookup.
-- 🗑️ Runtime GeometryReference persisted as durable semantic asset identity.
-- 🗑️ Random Boolean/repair parameter retry/search.
-- 🗑️ Competing module-local Result/Diagnostic families where canonical shared contracts exist.
-- 🗑️ Treating Gem module’s historical `v0.1.2` label as the released engine version.
-- 🗑️ MatrixGold/Peacock proprietary code/runtime dependency. They are workflow/architecture benchmarks only.
-- 🗑️ Parallel independent module roadmaps that can advance canonical state without Master-plan review.
-
----
-
-## 11. REPOSITORY CONTRADICTION POLICY
-
-When this plan is installed in GitHub:
-
-1. Active code and active docs must conform to this plan and MID-001→MID-422.
-2. A conflicting active instruction/document must be edited to point to this plan or removed if it has no historical value.
-3. Historical handoffs/releases/snapshots should normally be preserved as evidence, but must be clearly labeled `HISTORICAL / NON-AUTHORITATIVE` or placed under an archive path.
-4. Never delete the released v0.1.1 baseline merely because v0.2 exists.
-5. Never rewrite working geometry algorithms solely to make code stylistically match new architecture; adapt at explicit boundaries.
-6. If code contradicts a frozen contract, fix the contradiction only after reproducing it through build/test evidence.
-7. README, agent instructions, issue templates, and developer docs must not advertise a later phase as current work.
+Do not reintroduce:
+- AI → arbitrary Rhino scripts/raw NURBS as primary runtime path;
+- Grasshopper as second CAD business-logic authority;
+- OperationGraph v0.1 as current graph architecture;
+- silent v0.1.1→v0.2 reinterpretation;
+- ComponentId→live Brep/GeometryReference magic lookup;
+- runtime GeometryReference as durable semantic identity;
+- random Boolean/repair parameter search;
+- competing module-local Result/Diagnostic families where shared canonical contracts exist;
+- Gem historical `v0.1.2` label as released engine version;
+- MatrixGold/Peacock proprietary code/runtime dependency;
+- independent module roadmaps advancing canonical state without Master-plan review.
 
 ---
 
-## 12. REQUIRED GITHUB GOVERNANCE FILES
+## 12. REPOSITORY CONTRADICTION POLICY
 
-Repository root must contain:
-
-- `/AGENTS.md` — mandatory startup instructions pointing to this plan.
-- `/MASTER_EXECUTION_PLAN.md` — byte-equivalent canonical plan mirror.
-- `/.github/copilot-instructions.md` — GitHub Copilot/agent enforcement pointer.
-- README top banner — “Read MASTER_EXECUTION_PLAN.md before work; current active MID-423 / G1”.
-
-If any one of these claims a different active phase/version, the mismatch is a blocking governance defect.
-
----
-
-## 13. EVIDENCE / STATUS UPDATE PROTOCOL
-
-Whenever work changes a status:
-
-1. Record date/time and Plan Revision.
-2. Record exact gate/task.
-3. Record evidence:
-   - commit SHA,
-   - build/test command,
-   - Rhino version/SDK,
-   - fixture name,
-   - result summary,
-   - artifact/hash where relevant.
-4. Change status only after evidence exists.
-5. Record new MID decision(s) when canonical behavior changes.
-6. Set the next exact active gate.
-7. Mirror the updated plan to Drive and GitHub before starting the next primary gate.
-
-### Evidence log — initial state
-
-- 2026-09-02 — Plan Revision 1.0 created from latest Drive canonical Master + MID-423 handoff.
-- Canonical release: v0.1.1.
-- Canonical decisions through MID-422.
-- G0 = PASS.
-- G1 = NOT RUN.
-- G2 = implemented/not run.
-- G3–G7/G10 = not run.
-- G8/G9 = partial adapter/contract only.
-- Current primary active gate = STEP 1 / G1 Core .NET 8 warnings-as-errors build closure.
+1. Active code/docs must conform to this plan and MID-001→MID-422.
+2. Conflicting active instructions must be corrected or removed.
+3. Historical evidence may remain only when clearly archived/non-authoritative.
+4. Never delete released v0.1.1 baseline merely because v0.2 exists.
+5. Never rewrite working geometry solely for stylistic conformity; adapt at explicit boundaries.
+6. README/AGENTS/Copilot instructions must point to this plan and current gate.
+7. Any mismatch in version/current gate is a blocking governance defect.
 
 ---
 
-## 14. END-OF-SESSION CHECKLIST
+## 13. REQUIRED GITHUB GOVERNANCE FILES
 
-Before a chat/agent declares its work complete:
+Repository root:
+- `/MASTER_EXECUTION_PLAN.md`
+- `/AGENTS.md`
+- `/.github/copilot-instructions.md`
+- `/README.md` top START-HERE banner
 
-- Did I work only on the active gate or a direct blocker?
-- Did I avoid reopening frozen architecture without evidence?
-- Did I preserve v0.1.1 released behavior where required?
-- Did I run the required acceptance evidence?
-- Did I avoid marking ⚠️ work as ✅ without proof?
-- Did I record exact failures/fixes/tests?
-- Did I update current MID/gate only if evidence justifies it?
-- Did I mirror the plan state to Drive and GitHub?
-- Did I leave one unambiguous next action for the next chat?
+CI evidence:
+- `/.github/workflows/g1-core.yml`
+- `/docs/G1_BUILD_EVIDENCE.md`
+- `/docs/SOURCE_RECOVERY.md`
 
-If any answer is “no”, the handoff is incomplete.
+---
+
+## 14. EVIDENCE / STATUS UPDATE PROTOCOL
+
+Whenever status changes:
+1. record date, Plan Revision, gate/task;
+2. record commit SHA, build/test command, SDK/host, fixture, result, hashes/artifacts where relevant;
+3. promote status only after evidence;
+4. create MID decision only when canonical behavior changes;
+5. set exactly one next active gate;
+6. mirror this plan to GitHub + Drive before next primary implementation.
+
+### Evidence log
+
+- 2026-09-02 — Revision 1.0 created; baseline v0.1.1; MID-423; G0 PASS; G1 active.
+- 2026-09-02 — G1 first inspectable run `33627390904` FAIL: CS0121 ambiguous `ExecutionTarget.All`; 0 warnings / 1 error.
+- 2026-09-02 — Compile-only fix applied: explicitly typed nullable `IReadOnlySet<OperationNodeId>?` argument; architecture unchanged.
+- 2026-09-02 — G1 run `33627504547` PASS after compile fix, but SDK pin tightened for unambiguous evidence.
+- 2026-09-02 — G1 run `33627706511` PASS using .NET SDK 8.0.424; build 0 warnings / 0 errors; 15-node smoke PASS.
+- 2026-09-02 — Final PR head run `33627808748` PASS; G1 merged as `35b78ceaf47acb630ebcfe23f514fad508a8158b`.
+- 2026-09-02 — Revision 1.1: G1 promoted to ✅; STEP 2 released Ring v0.1.1 binding becomes the single active gate.
+
+---
+
+## 15. END-OF-SESSION CHECKLIST
+
+Before declaring work complete:
+- worked only on active gate/direct blocker;
+- no frozen architecture reopened without evidence;
+- v0.1.1 released behavior preserved;
+- required acceptance evidence actually run;
+- no ⚠️ promoted to ✅ without proof;
+- exact failures/fixes/tests recorded;
+- current gate/MID changed only when justified;
+- plan mirrored to Drive + GitHub;
+- exactly one next action remains unambiguous.
+
+If any answer is no, the handoff is incomplete.
